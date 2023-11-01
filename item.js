@@ -1,42 +1,51 @@
 const data = require('./food.json');
 
-
-function fooddata(){
-    const food = data.filter((item)=> (item.foodname));
-    return food;
+function allfooditem(type) {
+    if(type === 'allfood'){
+    const food = data.filter((item) => item.foodname);
+    console.log('List all the food items:\n', food);
+}
+else if(type === 'protiens'){
+    const food = data.filter((item) => item.protiens);
+    console.log('list all the food items with category protien:\n', food);
+    }
 }
 
-fooddata(data);
+function categories(category) {
+  const food = data.filter((item) => (item.category === category));
+  console.log(`List all the food items with category ${category}:\n`, food);
+}
 
-// const food = data.filter((item)=> (item.foodname));
-// console.log("\nlist all the food items\n",food)
+function calorieabove100() {
+  const food = data.filter((item) => item.calorie > 100);
+  console.log('List all the food items with calories above 100:\n', food);
+}
 
-// const vegetable = data.filter((item)=> (item.category==='Vegetable'));
-// console.log("\nlist all the food items with category vegetablesn\n",vegetable);
+function caloriebelow100() {
+  const food = data.filter((item) => item.calorie < 100);
+  console.log(`List all the food items with calories below 100:\n`, food);
+}
 
-// const fruit = data.filter((item)=> (item.category==='Fruit'));
-// console.log("\nlist all the food items with category fruit\n",fruit);
+function protienhightolow() {
+  const hightolow = data.slice().sort((a, b) => b.protiens - a.protiens);
+  console.log('List all the food items with the highest protein content to lowest:\n', hightolow);
+}
 
-// const protien = data.filter((item)=> (item.protiens));
-// console.log("\nlist all the food items with category protien\n",protien);
+function cablowtohigh() {
+  const lowtohigh = data.slice().sort((a, b) => a.cab - b.cab);
+  console.log('List all the food items with the lowest carb content to highest:\n', lowtohigh);
+}
 
-// const nuts = data.filter((item)=> (item.category==='Nuts'));
-// console.log("\nlist all the food items with category nuts\n",nuts);
+// for print the data according to you by using this
 
-// const grain = data.filter((item)=> (item.category==='Grain'));
-// console.log("\nlist all the food items with category grains\n",grain);
-
-// const dairy = data.filter((item)=> (item.category==='Dairy'));
-// console.log("\nlist all the food items with category dairy\n",dairy);
-
-// const above100 = data.filter((item)=> (item.calorie>100));
-// console.log("\nlist all the food items with calorie above 100\n",above100);
-
-// const below100 = data.filter((item)=> (item.calorie<100));
-// console.log("\nlist all the food items with calorie below 100\n",below100);
-
-// const protiendes = data.sort((a, b) => b.protiens - a.protiens);
-// console.log("\nlist all the food items with highest protien content to lowest\n",protiendes);
-
-// const cab = data.sort((a, b) => a.cab - b.cab);
-// console.log("\nlist all the food items with lowest cab content to highest\n",cab);
+allfooditem('allfood');
+categories('Vegetable');
+categories('Fruit');
+allfooditem('protiens');
+categories('Nuts');
+categories('Grain');
+categories('Dairy');
+calorieabove100();
+caloriebelow100();
+protienhightolow();
+cablowtohigh();
